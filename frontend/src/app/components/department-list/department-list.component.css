@@ -1,0 +1,44 @@
+.form {
+  margin-bottom: 1.5rem;
+}
+
+.form h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-actions,
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.actions {
+  margin-top: 0;
+}
+
+.error {
+  color: #b91c1c;
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.empty {
+  text-align: center;
+  color: #64748b;
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

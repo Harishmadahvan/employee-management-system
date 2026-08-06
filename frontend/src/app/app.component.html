@@ -1,0 +1,23 @@
+<div class="layout">
+  <header class="navbar">
+    <div class="brand">
+      <span class="brand-mark">EMS</span>
+      <div>
+        <strong>{{ title }}</strong>
+        <p>Spring Boot + Angular CRUD Demo</p>
+      </div>
+    </div>
+    <nav>
+      <a routerLink="/employees" routerLinkActive="active">Employees</a>
+      <a routerLink="/departments" routerLinkActive="active">Departments</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    Built for interview practice · No authentication · H2 in-memory database
+  </footer>
+</div>

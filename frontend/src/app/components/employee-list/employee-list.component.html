@@ -1,0 +1,66 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h2>Employees</h2>
+      <p class="subtitle">Search, paginate, and manage employee records</p>
+    </div>
+    <a routerLink="/employees/new" class="btn btn-primary">Add Employee</a>
+  </div>
+
+  <div class="toolbar">
+    <input
+      type="text"
+      [(ngModel)]="keyword"
+      (keyup.enter)="search()"
+      placeholder="Search by name or email"
+      class="search-input"
+    />
+    <button type="button" class="btn btn-secondary" (click)="search()">Search</button>
+    <button type="button" class="btn btn-ghost" (click)="clearSearch()">Clear</button>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <div *ngIf="loading" class="alert">Loading employees...</div>
+
+  <div class="table-wrap" *ngIf="pageData && !loading">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Salary</th>
+          <th>Hire Date</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of pageData.content">
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phone || '-' }}</td>
+          <td>{{ emp.salary | number:'1.2-2' }}</td>
+          <td>{{ emp.hireDate }}</td>
+          <td>{{ emp.departmentName }}</td>
+          <td class="actions">
+            <a [routerLink]="['/employees/edit', emp.id]" class="btn btn-sm btn-secondary">Edit</a>
+            <button type="button" class="btn btn-sm btn-danger" (click)="deleteEmployee(emp)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="pageData.content.length === 0">
+          <td colspan="8" class="empty">No employees found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" *ngIf="pageData && pageData.totalPages > 0">
+    <button type="button" class="btn btn-ghost" [disabled]="page === 0" (click)="goToPage(page - 1)">Previous</button>
+    <span>Page {{ page + 1 }} of {{ pageData.totalPages }} ({{ pageData.totalElements }} total)</span>
+    <button type="button" class="btn btn-ghost" [disabled]="pageData.last" (click)="goToPage(page + 1)">Next</button>
+  </div>
+</div>

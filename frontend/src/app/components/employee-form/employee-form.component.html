@@ -1,0 +1,74 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h2>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h2>
+      <p class="subtitle">All fields marked with * are required</p>
+    </div>
+    <a routerLink="/employees" class="btn btn-ghost">Back to List</a>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+
+  <form class="card form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="grid">
+      <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input id="firstName" type="text" formControlName="firstName" />
+        <small class="error" *ngIf="hasError('firstName')">First name is required</small>
+        <small class="error" *ngIf="fieldErrors['firstName']">{{ fieldErrors['firstName'] }}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input id="lastName" type="text" formControlName="lastName" />
+        <small class="error" *ngIf="hasError('lastName')">Last name is required</small>
+        <small class="error" *ngIf="fieldErrors['lastName']">{{ fieldErrors['lastName'] }}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input id="email" type="email" formControlName="email" />
+        <small class="error" *ngIf="hasError('email')">Valid email is required</small>
+        <small class="error" *ngIf="fieldErrors['email']">{{ fieldErrors['email'] }}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" formControlName="phone" placeholder="9876543210" />
+        <small class="error" *ngIf="hasError('phone')">Invalid phone format</small>
+        <small class="error" *ngIf="fieldErrors['phone']">{{ fieldErrors['phone'] }}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="salary">Salary *</label>
+        <input id="salary" type="number" step="0.01" formControlName="salary" />
+        <small class="error" *ngIf="hasError('salary')">Salary must be greater than 0</small>
+        <small class="error" *ngIf="fieldErrors['salary']">{{ fieldErrors['salary'] }}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="hireDate">Hire Date *</label>
+        <input id="hireDate" type="date" formControlName="hireDate" />
+        <small class="error" *ngIf="hasError('hireDate')">Hire date is required</small>
+        <small class="error" *ngIf="fieldErrors['hireDate']">{{ fieldErrors['hireDate'] }}</small>
+      </div>
+
+      <div class="form-group full">
+        <label for="departmentId">Department *</label>
+        <select id="departmentId" formControlName="departmentId">
+          <option [ngValue]="null">Select department</option>
+          <option *ngFor="let dept of departments" [ngValue]="dept.id">{{ dept.name }}</option>
+        </select>
+        <small class="error" *ngIf="hasError('departmentId')">Department is required</small>
+        <small class="error" *ngIf="fieldErrors['departmentId']">{{ fieldErrors['departmentId'] }}</small>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        {{ loading ? 'Saving...' : (isEditMode ? 'Update Employee' : 'Create Employee') }}
+      </button>
+      <a routerLink="/employees" class="btn btn-ghost">Cancel</a>
+    </div>
+  </form>
+</div>
