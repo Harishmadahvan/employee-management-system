@@ -18,7 +18,7 @@ This project manages **Employees** and **Departments** with complete CRUD operat
 - One-to-Many relationship (Department → Employees)
 - CORS enabled for Angular (`localhost:4200`)
 - H2 in-memory database with seed data and H2 console
-- Responsive UI for desktop and mobile
+- Responsive UI for desktop and mobile.
 
 ## Technology Stack
 
