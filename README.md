@@ -6,7 +6,7 @@ A resume-ready full-stack CRUD application built with **Spring Boot**, **Angular
 
 This project manages **Employees** and **Departments** with complete CRUD operations, form validation, global exception handling, pagination, and search. It follows a clean layered backend architecture and a responsive Angular frontend that consumes REST APIs.
 
-**No authentication/authorization** is included intentionally to keep the project interview-friendly and easy to explain.
+**No authentication/authorization** is included intentionally to keep the project interview-friendly and easy to explain
 
 ## Features
 
